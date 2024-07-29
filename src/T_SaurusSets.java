@@ -76,63 +76,63 @@ import java.util.*;
 
 public class T_SaurusSets {
     public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-int n = scanner.nextInt();
-List<List<Integer>> dependencies = new ArrayList<>(n + 1);
-int[] indegree = new int[n + 1];
+        int n = scanner.nextInt();
+        List<List<Integer>> dependencies = new ArrayList<>(n + 1);
+        int[] indegree = new int[n + 1];
 
-for (int i = 0; i <= n; i++) {
-    dependencies.add(new ArrayList<>());
-}
+        for (int i = 0; i <= n; i++) {
+            dependencies.add(new ArrayList<>());
+        }
 
-for (int i = 1; i <= n; i++) {
-    int ai = scanner.nextInt();
-    for (int j = 0; j < ai; j++) {
-int dep = scanner.nextInt();
-dependencies.get(dep).add(i);
-indegree[i]++;
-    }
-}
+        for (int i = 1; i <= n; i++) {
+            int ai = scanner.nextInt();
+            for (int j = 0; j < ai; j++) {
+                int dep = scanner.nextInt();
+                dependencies.get(dep).add(i);
+                indegree[i]++;
+            }
+        }
 
-List<List<Integer>> result = new ArrayList<>();
-Queue<Integer> queue = new LinkedList<>();
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
 
-for (int i = 1; i <= n; i++) {
-    if (indegree[i] == 0) {
-queue.add(i);
-    }
-}
+        for (int i = 1; i <= n; i++) {
+            if (indegree[i] == 0) {
+                queue.add(i);
+            }
+        }
 
-while (!queue.isEmpty()) {
-    List<Integer> currentBatch = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            List<Integer> currentBatch = new ArrayList<>();
 
-    while (!queue.isEmpty()) {
-currentBatch.add(queue.poll());
-    }
+            while (!queue.isEmpty()) {
+                currentBatch.add(queue.poll());
+            }
 
-    Collections.sort(currentBatch);
-    result.add(currentBatch);
+            Collections.sort(currentBatch);
+            result.add(currentBatch);
 
-    for (int process : currentBatch) {
-for (int dependent : dependencies.get(process)) {
-    indegree[dependent]--;
-    if (indegree[dependent] == 0) {
-queue.add(dependent);
-    }
-}
-    }
-}
+            for (int process : currentBatch) {
+                for (int dependent : dependencies.get(process)) {
+                    indegree[dependent]--;
+                    if (indegree[dependent] == 0) {
+                        queue.add(dependent);
+                    }
+                }
+            }
+        }
 
-System.out.println(result.size());
-for (List<Integer> batch : result) {
-    System.out.print(batch.size() + " ");
-    for (int process : batch) {
-System.out.print(process + " ");
-    }
-    System.out.println();
-}
+        System.out.println(result.size());
+        for (List<Integer> batch : result) {
+            System.out.print(batch.size() + " ");
+            for (int process : batch) {
+                System.out.print(process + " ");
+            }
+            System.out.println();
+        }
 
-scanner.close();
+        scanner.close();
     }
 }

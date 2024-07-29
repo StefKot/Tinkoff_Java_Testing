@@ -30,14 +30,14 @@ import java.util.Scanner;
 public class VirusSpread {
 
     public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
-int n = scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
 
-if (n == 1) {
-    System.out.println(1);
-} else {
-    long infectedCount = (long) Math.pow(4, n - 1);
-    System.out.println(infectedCount);
-}
+        if (n == 1) {
+            System.out.println(1);
+        } else {
+            long infectedCount = (long) Math.pow(4, n - 1);
+            System.out.println(infectedCount);
+        }
     }
 }

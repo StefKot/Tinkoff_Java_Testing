@@ -63,48 +63,48 @@ import java.util.*;
 
 public class T_Saurus {
     public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-int n = scanner.nextInt();
-List<List<Integer>> dependencies = new ArrayList<>(n + 1);
-int[] inDegree = new int[n + 1];
-int[] finishTime = new int[n + 1];
+        int n = scanner.nextInt();
+        List<List<Integer>> dependencies = new ArrayList<>(n + 1);
+        int[] inDegree = new int[n + 1];
+        int[] finishTime = new int[n + 1];
 
-for (int i = 0; i <= n; i++) {
-    dependencies.add(new ArrayList<>());
-}
+        for (int i = 0; i <= n; i++) {
+            dependencies.add(new ArrayList<>());
+        }
 
-for (int i = 1; i <= n; i++) {
-    int a = scanner.nextInt();
-    inDegree[i] = a;
-    for (int j = 0; j < a; j++) {
-int dependency = scanner.nextInt();
-dependencies.get(dependency).add(i);
-    }
-}
+        for (int i = 1; i <= n; i++) {
+            int a = scanner.nextInt();
+            inDegree[i] = a;
+            for (int j = 0; j < a; j++) {
+                int dependency = scanner.nextInt();
+                dependencies.get(dependency).add(i);
+            }
+        }
 
-Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
 
-for (int i = 1; i <= n; i++) {
-    if (inDegree[i] == 0) {
-queue.offer(i);
-finishTime[i] = 1;
-    }
-}
+        for (int i = 1; i <= n; i++) {
+            if (inDegree[i] == 0) {
+                queue.offer(i);
+                finishTime[i] = 1;
+            }
+        }
 
-while (!queue.isEmpty()) {
-    int currentProcess = queue.poll();
+        while (!queue.isEmpty()) {
+            int currentProcess = queue.poll();
 
-    for (int dependent : dependencies.get(currentProcess)) {
-inDegree[dependent]--;
-finishTime[dependent] = Math.max(finishTime[dependent], finishTime[currentProcess] + 1);
+            for (int dependent : dependencies.get(currentProcess)) {
+                inDegree[dependent]--;
+                finishTime[dependent] = Math.max(finishTime[dependent], finishTime[currentProcess] + 1);
 
-if (inDegree[dependent] == 0) {
-    queue.offer(dependent);
-}
-    }
-}
+                if (inDegree[dependent] == 0) {
+                    queue.offer(dependent);
+                }
+            }
+        }
 
-System.out.println(finishTime[1]);
+        System.out.println(finishTime[1]);
     }
 }

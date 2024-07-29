@@ -31,15 +31,15 @@ import java.util.Scanner;
 
 public class Gauss {
     public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
-int n = scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
 
-long sumN = (long) n * (n + 1) / 2;
+        long sumN = (long) n * (n + 1) / 2;
 
-long sum99 = (long) 99 * 100 / 2;
+        long sum99 = (long) 99 * 100 / 2;
 
-long result = sumN - sum99;
+        long result = sumN - sum99;
 
-System.out.println(result);
+        System.out.println(result);
     }
 }
